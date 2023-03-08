@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## In this file I'll put my notes from John Hopkins' data science course R programming
 
-*R console Imput and evaluation*
+### *Lesson 1: R console Imput and evaluation*
 
 <- assignment operator : assign a value to a symbol
 "#" indicates a comment. Everything on the right of this symbol is ignored
@@ -28,7 +28,7 @@ Example:
 x <- 1:20  #this gives us a sequence
 x
 ```
-###*R objects and attributes*
+### * Lesson 2: R objects and attributes*
  
  R has five  basic classes of objects:
  -**character**
@@ -46,14 +46,14 @@ x
  
  The vector function has two basic arguments. The **first argument** is the *class* of the object, so the type of object that you want to have in the vector. And the **second argument** is the *length* of the vector itself.
  
-####Numbers
+#### Numbers
 
 Numbers in R are generally treated as *numeric objects*
 If you explicit wants an integer, you need to use the suffix **L**. Ex: 1L
 There's also the special number **inf** which represents infinity.
 The **NaN** (not a number) represents an undefined value or a missing value.
 
-###*Creating vectors*
+### *Lesson 3: Creating vectors*
 
 The c() function (concatenating) can be used to create vectors of an object
 ```{r}
@@ -74,7 +74,58 @@ x
 ```
 When different objects are mixed in a vector, **coercion** occurs so every object is of the same class
 When converted to numeric, TRUE is represented by the number 1 and FALSE by 0.
- 
+
+#### Explicit coercion
+
+Objects can be explicit coerced from one class to another
+Use of the function as.
+```{r}
+x <- 0:6
+class(x)
+as.numeric(x)
+as.logical(x) #as a convention, 0 is false and every other number above zero is true
+as.character(x)
+```
+
+ *Nonsensical* coersions results in *NA*
+```{r}
+x <- c("a", "b", "c")
+as.complex(x)
+as.numeric(x)
+as.logical(x)
+
+```
+ #### Lists
+ Lists are a special type of vector that can contain elements from different classes.
+```{r}
+x <- list(1, "a", TRUE, 1+4i)
+x
+```
+### *Lesson 4: Matrices*
+
+Matrices are vectors with a dimension attribute. The dimension attribute itself is an integer vector of length 2
+```{r}
+m <- matrix(1:6, nrow = 2, ncol = 3)
+m
+dim(m)
+attributes(m)
+$dim
+```
+Matrix can also be created directly from vectors by introducing a dimensional attribute
+```{r}
+m <- 1:10
+dim(m)<- c(2, 5) # I'm assigning an attribute to the vector m
+m
+```
+
+ Matrices can be created by colunm binding or row binding using cbind() and rbind()
+```{r}
+x <- 1:3
+y <-10:12
+cbind(x, y)
+
+rbind(x, y)
+```
  
 
 
